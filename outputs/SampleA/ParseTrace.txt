@@ -1,0 +1,78 @@
+Step | Stack (top left) | Remaining input | Production / Action | Error
+1 | Program $ | Adadi identifier ( Adadi identifier , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number | Program -> Adadi ProgramPrime | -
+2 | Adadi ProgramPrime $ | Adadi identifier ( Adadi identifier , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number | MATCH Adadi | -
+3 | ProgramPrime $ | identifier ( Adadi identifier , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: | ProgramPrime -> identifier ( ArgList ) CompStmt | -
+4 | identifier ( ArgList ) CompStmt $ | identifier ( Adadi identifier , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: | MATCH identifier | -
+5 | ( ArgList ) CompStmt $ | ( Adadi identifier , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier | MATCH ( | -
+6 | ArgList ) CompStmt $ | Adadi identifier , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := | ArgList -> Arg ArgListPrime | -
+7 | Arg ArgListPrime ) CompStmt $ | Adadi identifier , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := | Arg -> Type identifier | -
+8 | Type identifier ArgListPrime ) CompStmt $ | Adadi identifier , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := | Type -> Adadi | -
+9 | Adadi identifier ArgListPrime ) CompStmt $ | Adadi identifier , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := | MATCH Adadi | -
+10 | identifier ArgListPrime ) CompStmt $ | identifier , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier | MATCH identifier | -
+11 | ArgListPrime ) CompStmt $ | , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - | ArgListPrime -> , Arg ArgListPrime | -
+12 | , Arg ArgListPrime ) CompStmt $ | , Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - | MATCH , | -
+13 | Arg ArgListPrime ) CompStmt $ | Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number | Arg -> Type identifier | -
+14 | Type identifier ArgListPrime ) CompStmt $ | Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number | Type -> Ashriya | -
+15 | Ashriya identifier ArgListPrime ) CompStmt $ | Ashriya identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number | MATCH Ashriya | -
+16 | identifier ArgListPrime ) CompStmt $ | identifier ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: | MATCH identifier | -
+17 | ArgListPrime ) CompStmt $ | ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } | ArgListPrime -> ε | -
+18 | ) CompStmt $ | ) { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } | MATCH ) | -
+19 | CompStmt $ | { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | CompStmt -> { StmtList } | -
+20 | { StmtList } $ | { Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | MATCH { | -
+21 | StmtList } $ | Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | StmtList -> Stmt StmtList | -
+22 | Stmt StmtList } $ | Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | Stmt -> Declaration | -
+23 | Declaration StmtList } $ | Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | Declaration -> Type IdentList :: | -
+24 | Type IdentList :: StmtList } $ | Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | Type -> Adadi | -
+25 | Adadi IdentList :: StmtList } $ | Adadi identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | MATCH Adadi | -
+26 | IdentList :: StmtList } $ | identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | IdentList -> identifier IdentListPrime | -
+27 | identifier IdentListPrime :: StmtList } $ | identifier , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | MATCH identifier | -
+28 | IdentListPrime :: StmtList } $ | , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | IdentListPrime -> , identifier IdentListPrime | -
+29 | , identifier IdentListPrime :: StmtList } $ | , identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | MATCH , | -
+30 | identifier IdentListPrime :: StmtList } $ | identifier :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | MATCH identifier | -
+31 | IdentListPrime :: StmtList } $ | :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | IdentListPrime -> ε | -
+32 | :: StmtList } $ | :: identifier := identifier + number * number :: identifier := identifier - number :: } $ | MATCH :: | -
+33 | StmtList } $ | identifier := identifier + number * number :: identifier := identifier - number :: } $ | StmtList -> Stmt StmtList | -
+34 | Stmt StmtList } $ | identifier := identifier + number * number :: identifier := identifier - number :: } $ | Stmt -> Expr :: | -
+35 | Expr :: StmtList } $ | identifier := identifier + number * number :: identifier := identifier - number :: } $ | Expr -> identifier ExprPrime | -
+36 | identifier ExprPrime :: StmtList } $ | identifier := identifier + number * number :: identifier := identifier - number :: } $ | MATCH identifier | -
+37 | ExprPrime :: StmtList } $ | := identifier + number * number :: identifier := identifier - number :: } $ | ExprPrime -> := Expr | -
+38 | := Expr :: StmtList } $ | := identifier + number * number :: identifier := identifier - number :: } $ | MATCH := | -
+39 | Expr :: StmtList } $ | identifier + number * number :: identifier := identifier - number :: } $ | Expr -> identifier ExprPrime | -
+40 | identifier ExprPrime :: StmtList } $ | identifier + number * number :: identifier := identifier - number :: } $ | MATCH identifier | -
+41 | ExprPrime :: StmtList } $ | + number * number :: identifier := identifier - number :: } $ | ExprPrime -> TermPrime MagPrime RvaluePrime | -
+42 | TermPrime MagPrime RvaluePrime :: StmtList } $ | + number * number :: identifier := identifier - number :: } $ | TermPrime -> ε | -
+43 | MagPrime RvaluePrime :: StmtList } $ | + number * number :: identifier := identifier - number :: } $ | MagPrime -> + Term MagPrime | -
+44 | + Term MagPrime RvaluePrime :: StmtList } $ | + number * number :: identifier := identifier - number :: } $ | MATCH + | -
+45 | Term MagPrime RvaluePrime :: StmtList } $ | number * number :: identifier := identifier - number :: } $ | Term -> Factor TermPrime | -
+46 | Factor TermPrime MagPrime RvaluePrime :: StmtList } $ | number * number :: identifier := identifier - number :: } $ | Factor -> number | -
+47 | number TermPrime MagPrime RvaluePrime :: StmtList } $ | number * number :: identifier := identifier - number :: } $ | MATCH number | -
+48 | TermPrime MagPrime RvaluePrime :: StmtList } $ | * number :: identifier := identifier - number :: } $ | TermPrime -> * Factor TermPrime | -
+49 | * Factor TermPrime MagPrime RvaluePrime :: StmtList } $ | * number :: identifier := identifier - number :: } $ | MATCH * | -
+50 | Factor TermPrime MagPrime RvaluePrime :: StmtList } $ | number :: identifier := identifier - number :: } $ | Factor -> number | -
+51 | number TermPrime MagPrime RvaluePrime :: StmtList } $ | number :: identifier := identifier - number :: } $ | MATCH number | -
+52 | TermPrime MagPrime RvaluePrime :: StmtList } $ | :: identifier := identifier - number :: } $ | TermPrime -> ε | -
+53 | MagPrime RvaluePrime :: StmtList } $ | :: identifier := identifier - number :: } $ | MagPrime -> ε | -
+54 | RvaluePrime :: StmtList } $ | :: identifier := identifier - number :: } $ | RvaluePrime -> ε | -
+55 | :: StmtList } $ | :: identifier := identifier - number :: } $ | MATCH :: | -
+56 | StmtList } $ | identifier := identifier - number :: } $ | StmtList -> Stmt StmtList | -
+57 | Stmt StmtList } $ | identifier := identifier - number :: } $ | Stmt -> Expr :: | -
+58 | Expr :: StmtList } $ | identifier := identifier - number :: } $ | Expr -> identifier ExprPrime | -
+59 | identifier ExprPrime :: StmtList } $ | identifier := identifier - number :: } $ | MATCH identifier | -
+60 | ExprPrime :: StmtList } $ | := identifier - number :: } $ | ExprPrime -> := Expr | -
+61 | := Expr :: StmtList } $ | := identifier - number :: } $ | MATCH := | -
+62 | Expr :: StmtList } $ | identifier - number :: } $ | Expr -> identifier ExprPrime | -
+63 | identifier ExprPrime :: StmtList } $ | identifier - number :: } $ | MATCH identifier | -
+64 | ExprPrime :: StmtList } $ | - number :: } $ | ExprPrime -> TermPrime MagPrime RvaluePrime | -
+65 | TermPrime MagPrime RvaluePrime :: StmtList } $ | - number :: } $ | TermPrime -> ε | -
+66 | MagPrime RvaluePrime :: StmtList } $ | - number :: } $ | MagPrime -> - Term MagPrime | -
+67 | - Term MagPrime RvaluePrime :: StmtList } $ | - number :: } $ | MATCH - | -
+68 | Term MagPrime RvaluePrime :: StmtList } $ | number :: } $ | Term -> Factor TermPrime | -
+69 | Factor TermPrime MagPrime RvaluePrime :: StmtList } $ | number :: } $ | Factor -> number | -
+70 | number TermPrime MagPrime RvaluePrime :: StmtList } $ | number :: } $ | MATCH number | -
+71 | TermPrime MagPrime RvaluePrime :: StmtList } $ | :: } $ | TermPrime -> ε | -
+72 | MagPrime RvaluePrime :: StmtList } $ | :: } $ | MagPrime -> ε | -
+73 | RvaluePrime :: StmtList } $ | :: } $ | RvaluePrime -> ε | -
+74 | :: StmtList } $ | :: } $ | MATCH :: | -
+75 | StmtList } $ | } $ | StmtList -> ε | -
+76 | } $ | } $ | MATCH } | -
+77 | $ | $ | End of input | ACCEPT

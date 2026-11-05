@@ -1,0 +1,10 @@
+<KEYWORD, Adadi> at line 1
+<KEYWORD, Marqazi> at line 1
+<OPERATOR, (> at line 1
+<OPERATOR, )> at line 1
+<OPERATOR, {> at line 2
+<KEYWORD, Wagarna> at line 4
+<KEYWORD, Adadi> at line 5
+<IDENTIFIER, first_val> at line 5
+<OPERATOR, ::> at line 5
+<OPERATOR, }> at line 6

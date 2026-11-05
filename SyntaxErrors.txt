@@ -1,0 +1,2 @@
+Line 3: Expected 'identifier', got '::'. POP expected terminal.
+Line 4: Unexpected '::' while parsing Term. POP on FOLLOW.

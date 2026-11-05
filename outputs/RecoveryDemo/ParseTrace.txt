@@ -1,0 +1,22 @@
+Step | Stack (top left) | Remaining input | Production / Action | Error
+1 | Program $ | Adadi Marqazi ( ) { Wagarna Adadi identifier :: } $ | Program -> Adadi ProgramPrime | -
+2 | Adadi ProgramPrime $ | Adadi Marqazi ( ) { Wagarna Adadi identifier :: } $ | MATCH Adadi | -
+3 | ProgramPrime $ | Marqazi ( ) { Wagarna Adadi identifier :: } $ | ProgramPrime -> Marqazi ( ) CompStmt | -
+4 | Marqazi ( ) CompStmt $ | Marqazi ( ) { Wagarna Adadi identifier :: } $ | MATCH Marqazi | -
+5 | ( ) CompStmt $ | ( ) { Wagarna Adadi identifier :: } $ | MATCH ( | -
+6 | ) CompStmt $ | ) { Wagarna Adadi identifier :: } $ | MATCH ) | -
+7 | CompStmt $ | { Wagarna Adadi identifier :: } $ | CompStmt -> { StmtList } | -
+8 | { StmtList } $ | { Wagarna Adadi identifier :: } $ | MATCH { | -
+9 | StmtList } $ | Wagarna Adadi identifier :: } $ | SCAN Wagarna | Unexpected 'Wagarna' while parsing StmtList
+10 | StmtList } $ | Adadi identifier :: } $ | StmtList -> Stmt StmtList | -
+11 | Stmt StmtList } $ | Adadi identifier :: } $ | Stmt -> Declaration | -
+12 | Declaration StmtList } $ | Adadi identifier :: } $ | Declaration -> Type IdentList :: | -
+13 | Type IdentList :: StmtList } $ | Adadi identifier :: } $ | Type -> Adadi | -
+14 | Adadi IdentList :: StmtList } $ | Adadi identifier :: } $ | MATCH Adadi | -
+15 | IdentList :: StmtList } $ | identifier :: } $ | IdentList -> identifier IdentListPrime | -
+16 | identifier IdentListPrime :: StmtList } $ | identifier :: } $ | MATCH identifier | -
+17 | IdentListPrime :: StmtList } $ | :: } $ | IdentListPrime -> ε | -
+18 | :: StmtList } $ | :: } $ | MATCH :: | -
+19 | StmtList } $ | } $ | StmtList -> ε | -
+20 | } $ | } $ | MATCH } | -
+21 | $ | $ | End of input | Errors recorded

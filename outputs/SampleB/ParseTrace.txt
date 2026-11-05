@@ -1,0 +1,40 @@
+Step | Stack (top left) | Remaining input | Production / Action | Error
+1 | Program $ | Adadi Marqazi ( ) { Adadi identifier , :: identifier := number + :: } $ | Program -> Adadi ProgramPrime | -
+2 | Adadi ProgramPrime $ | Adadi Marqazi ( ) { Adadi identifier , :: identifier := number + :: } $ | MATCH Adadi | -
+3 | ProgramPrime $ | Marqazi ( ) { Adadi identifier , :: identifier := number + :: } $ | ProgramPrime -> Marqazi ( ) CompStmt | -
+4 | Marqazi ( ) CompStmt $ | Marqazi ( ) { Adadi identifier , :: identifier := number + :: } $ | MATCH Marqazi | -
+5 | ( ) CompStmt $ | ( ) { Adadi identifier , :: identifier := number + :: } $ | MATCH ( | -
+6 | ) CompStmt $ | ) { Adadi identifier , :: identifier := number + :: } $ | MATCH ) | -
+7 | CompStmt $ | { Adadi identifier , :: identifier := number + :: } $ | CompStmt -> { StmtList } | -
+8 | { StmtList } $ | { Adadi identifier , :: identifier := number + :: } $ | MATCH { | -
+9 | StmtList } $ | Adadi identifier , :: identifier := number + :: } $ | StmtList -> Stmt StmtList | -
+10 | Stmt StmtList } $ | Adadi identifier , :: identifier := number + :: } $ | Stmt -> Declaration | -
+11 | Declaration StmtList } $ | Adadi identifier , :: identifier := number + :: } $ | Declaration -> Type IdentList :: | -
+12 | Type IdentList :: StmtList } $ | Adadi identifier , :: identifier := number + :: } $ | Type -> Adadi | -
+13 | Adadi IdentList :: StmtList } $ | Adadi identifier , :: identifier := number + :: } $ | MATCH Adadi | -
+14 | IdentList :: StmtList } $ | identifier , :: identifier := number + :: } $ | IdentList -> identifier IdentListPrime | -
+15 | identifier IdentListPrime :: StmtList } $ | identifier , :: identifier := number + :: } $ | MATCH identifier | -
+16 | IdentListPrime :: StmtList } $ | , :: identifier := number + :: } $ | IdentListPrime -> , identifier IdentListPrime | -
+17 | , identifier IdentListPrime :: StmtList } $ | , :: identifier := number + :: } $ | MATCH , | -
+18 | identifier IdentListPrime :: StmtList } $ | :: identifier := number + :: } $ | POP terminal identifier | Expected 'identifier', found '::'
+19 | IdentListPrime :: StmtList } $ | :: identifier := number + :: } $ | IdentListPrime -> ε | -
+20 | :: StmtList } $ | :: identifier := number + :: } $ | MATCH :: | -
+21 | StmtList } $ | identifier := number + :: } $ | StmtList -> Stmt StmtList | -
+22 | Stmt StmtList } $ | identifier := number + :: } $ | Stmt -> Expr :: | -
+23 | Expr :: StmtList } $ | identifier := number + :: } $ | Expr -> identifier ExprPrime | -
+24 | identifier ExprPrime :: StmtList } $ | identifier := number + :: } $ | MATCH identifier | -
+25 | ExprPrime :: StmtList } $ | := number + :: } $ | ExprPrime -> := Expr | -
+26 | := Expr :: StmtList } $ | := number + :: } $ | MATCH := | -
+27 | Expr :: StmtList } $ | number + :: } $ | Expr -> NonIdFactor TermPrime MagPrime RvaluePrime | -
+28 | NonIdFactor TermPrime MagPrime RvaluePrime :: StmtList } $ | number + :: } $ | NonIdFactor -> number | -
+29 | number TermPrime MagPrime RvaluePrime :: StmtList } $ | number + :: } $ | MATCH number | -
+30 | TermPrime MagPrime RvaluePrime :: StmtList } $ | + :: } $ | TermPrime -> ε | -
+31 | MagPrime RvaluePrime :: StmtList } $ | + :: } $ | MagPrime -> + Term MagPrime | -
+32 | + Term MagPrime RvaluePrime :: StmtList } $ | + :: } $ | MATCH + | -
+33 | Term MagPrime RvaluePrime :: StmtList } $ | :: } $ | POP Term | Unexpected '::', synchronizing on FOLLOW
+34 | MagPrime RvaluePrime :: StmtList } $ | :: } $ | MagPrime -> ε | -
+35 | RvaluePrime :: StmtList } $ | :: } $ | RvaluePrime -> ε | -
+36 | :: StmtList } $ | :: } $ | MATCH :: | -
+37 | StmtList } $ | } $ | StmtList -> ε | -
+38 | } $ | } $ | MATCH } | -
+39 | $ | $ | End of input | Errors recorded

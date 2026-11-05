@@ -1,0 +1,2 @@
+REJECT
+Syntax errors: 2

@@ -1,0 +1,5 @@
+Adadi Marqazi ()
+{
+    Adadi first_val, ::
+    first_val := 2 + ::
+}
